@@ -28,6 +28,20 @@
 * Faceted search
 * Range queries
 * Advance search
+* Partial query support
+
+## Corpus ##
+Scraped https://sinhalasongbook.com/ to get lyrics and meta-data for 500 Sinhala songs
+
+* Meta-data scrapped
+    * Artist
+    * Lyric writer
+    * Composer
+    * Song title
+    * Genre
+    * Beat
+    * Key
+    * Number of views
 
 ## Supported Queries (examples) ##
 * මිල්ටන් ගැයූ ගී
