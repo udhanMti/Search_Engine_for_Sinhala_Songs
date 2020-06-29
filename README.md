@@ -45,7 +45,7 @@ Scraped https://sinhalasongbook.com/ to get lyrics and meta-data for 500 Sinhala
 
 ## Supported Queries (examples) ##
 * මිල්ටන් ගැයූ ගී
-* ප්‍රේමකීර්ති ලියපු සින්දු
+* ප්රේමකීර්ති ලියපු සින්දු
 * ජෝතිපාල කියපු ජනප්‍රිය ගීත 10 ක්
 * ප්‍රසිද්ධ චිත්‍රපට ගීත
 * ජෝතිපාල කියන චිත්‍රපට ගීත
