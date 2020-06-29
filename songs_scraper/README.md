@@ -1,6 +1,6 @@
 Scrape https://sinhalasongbook.com/ to get lyrics and meta-data for 500 Sinhala songs
 
-### Meta-data scapped ###
+#### Meta-data scrapped ####
 * Artist
 * Lyric writer
 * Composer
@@ -10,7 +10,7 @@ Scrape https://sinhalasongbook.com/ to get lyrics and meta-data for 500 Sinhala 
 * Key
 * Number of views
 
-### Tools used ###
+#### Tools used ####
 
 * Scrapy 2.1.0 
 * googletrans 3.0.0 
