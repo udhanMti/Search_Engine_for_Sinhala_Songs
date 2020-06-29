@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>Sinhala Songs Search Engine</title>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script language="JavaScript">
+	function func(agg){
+
+		term = agg.name;
+		songs = document.getElementsByClassName('search-result row');
+		songs = Array.from(songs);
+
+		matching_songs = songs.filter(term_filter,term);
+
+		section = document.getElementById('results_section');
+		section.innerHTML = matching_songs.map(e => e.outerHTML).join()
+	}
+
+	function term_filter(element){
+		term = this;
+		content = element.innerText;
+		return content.includes(term)
+	}
+
+</script>
+
+</head>
+<body>
+
+<style>
+    #search-bar-general {
+      display: flex;
+      margin: 20px 10px;
+    }
+    #search-bar-advanced {
+      display: flex;
+      margin: 20px 10px;
+    }
+
+    #search-bar-general input {
+      width: 100%;
+      padding: 10px;
+    }
+    #search-bar-advanced input {
+      width: 100%;
+      padding: 10px;
+    }
+
+    #search-bar-general button {
+      margin-left: 15px;
+    }
+
+    #search-bar-advanced button {
+      margin-left: 15px;
+    }
+
+    .bulk-results {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .search {
+      margin: 0px 10px 20px 10px;
+      padding: 20px;
+      background: #fafaff;
+    }
+
+    .search-header {
+      height: 40px;
+    }
+
+    .search-term {
+      font-weight: bold;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .search-results {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-auto-rows: 150px;
+      grid-gap: 20px;
+    }
+
+</style>
+
+  <form id="search-bar-general" action="/search">
+    <input type="text" placeholder="සොයන්න  .." name="search" value="{{ search_term }}">
+    <button type="submit"><i class="fa fa-search">සෙවීම</i></button>
+  </form>
+  <form id="search-bar-advanced" action="/advanced_search">
+    <input type="text" placeholder="පේළි.." name="Body" value="{{ body_term }}">
+    <input type="text" placeholder="ගායනය.." name="Artist" value="{{ artist_term }}">
+    <input type="text" placeholder="පද රචනය.." name="Lyrics" value="{{ lyrics_term }}">
+    <input type="text" placeholder="සංගීතය.." name="Music" value="{{ music_term }}">
+    <input type="text" placeholder="ශානරය.." name="Genre" value="{{ genre_term }}">
+    <button type="submit"><i class="fa fa-search">උසස් සෙවීම</i></button>
+  </form>
+    <section class="col-md-4">
+		{% for filter in aggs %}
+			<ul class="meta-search">{{filter}}
+			{% for bucket in aggs[filter]['buckets'] %}
+                {% if bucket.key != '' %}
+				  <li><a id="link" href="#" name="{{ bucket.key }}" onclick="func(this)">{{ bucket.key }}  ({{bucket.doc_count}})</a></li>
+                {% endif %}
+			{% endfor %}
+			</ul>
+		{% endfor %}
+    </section>
+    <section id='results_section' class="col-md-8">
+      {% for song in hit %}
+      <article class="search-result row">
+      <div class="col-md-12">
+                <h4>{{ song._source.Title }}</h4>
+
+                <li>ගායනය : {{ song._source.Artist }}</li>
+
+                <li>පද රචනය : {{ song._source.Lyrics }}</li>
+
+                <li>සංගීතය : {{ song._source.Music }}</li>
+
+                <li>ශානරය : {{ song._source.Genre }}</li>
+
+               <li>Beat : {{ song._source.Beat }}</li>
+
+               <li>Key : {{ song._source.key }}</li>
+
+               <li>Views : {{ song._source.Views }}</li>
+
+                <p>{{ song._source.Body }}</p>
+                <br>
+                <br>
+      </div>
+      </article>
+      {% endfor %}
+</section>
+</body>
+</html>
