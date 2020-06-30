@@ -28,7 +28,7 @@
 * Faceted search
 * Range queries
 * Advance search
-* Partial query support
+* Wildcard query support
 
 ## Corpus ##
 Scraped https://sinhalasongbook.com/ to get lyrics and meta-data for 500 Sinhala songs
